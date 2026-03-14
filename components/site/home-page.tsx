@@ -5,8 +5,24 @@ import { useEffect, useMemo, useState } from "react";
 import { posts } from "@/data/posts";
 import { vlogs } from "@/data/vlogs";
 
+const mirrorPortraitSets = {
+  current: {
+    realSrc: "/mirror-real.svg",
+    filteredSrc: "/mirror-filtered.svg",
+    leftLabel: "Real Self",
+    rightLabel: "Filtered Self",
+  },
+  test: {
+    realSrc: "/filipino-beauty.jpg",
+    filteredSrc: "/white-beauty.webp",
+    leftLabel: "Filipino Beauty",
+    rightLabel: "White Beauty Ideal",
+  },
+} as const;
+
 export function HomePage() {
   const isBlogModalEnabled = false;
+  const activeMirrorPortraits = mirrorPortraitSets.test;
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(0);
@@ -137,15 +153,15 @@ export function HomePage() {
               <div className="mirror-frame">
                 <div className="mirror-inner">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="portrait portrait-real"     src="/mirror-real.svg"     alt="" draggable={false} />
+                  <img className="portrait portrait-real" src={activeMirrorPortraits.realSrc} alt="" draggable={false} />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="portrait portrait-filtered" src="/mirror-filtered.svg" alt="" draggable={false} />
+                  <img className="portrait portrait-filtered" src={activeMirrorPortraits.filteredSrc} alt="" draggable={false} />
                   <div className="mirror-split-line" />
                   <div className="mirror-glass-fx" />
                 </div>
                 <div className="mirror-caption-row">
-                  <span>Real Self</span>
-                  <span>Filtered Self</span>
+                  <span>{activeMirrorPortraits.leftLabel}</span>
+                  <span>{activeMirrorPortraits.rightLabel}</span>
                 </div>
               </div>
             </div>
