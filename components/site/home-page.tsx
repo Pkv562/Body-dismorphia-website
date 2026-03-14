@@ -112,22 +112,43 @@ export function HomePage() {
         <div className="hero-bg" />
         <div className="hero-line-top" />
         <div className="hero-content">
-          <p className="hero-eyebrow">A 4-Part Series - Filipino Youth and Mental Health</p>
-          <h1 className="hero-title">
-            Shattering
-            <br />
-            the <em>Mirror</em>
-          </h1>
-          <p className="hero-subtitle">
-            Redefining the Filipino reflection - understanding the cultural, digital, and domestic roots of body dysmorphia.
-          </p>
-          <div className="hero-cta-row">
-            <a href="#blog" className="btn-primary">
-              Read the Series -&gt;
-            </a>
-            <a href="#vlogs" className="btn-ghost">
-              Watch the Vlogs
-            </a>
+          <div className="hero-layout">
+            <div className="hero-copy">
+              <p className="hero-eyebrow">A 4-Part Series - Filipino Youth and Mental Health</p>
+              <h1 className="hero-title">
+                Shattering
+                <br />
+                the <em>Mirror</em>
+              </h1>
+              <p className="hero-subtitle">
+                Redefining the Filipino reflection - understanding the cultural, digital, and domestic roots of body dysmorphia.
+              </p>
+              <div className="hero-cta-row">
+                <a href="#blog" className="btn-primary">
+                  Read the Series -&gt;
+                </a>
+                <a href="#vlogs" className="btn-ghost">
+                  Watch the Vlogs
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-mirror-wrap" aria-hidden="true">
+              <div className="mirror-frame">
+                <div className="mirror-inner">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className="portrait portrait-real"     src="/mirror-real.svg"     alt="" draggable={false} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className="portrait portrait-filtered" src="/mirror-filtered.svg" alt="" draggable={false} />
+                  <div className="mirror-split-line" />
+                  <div className="mirror-glass-fx" />
+                </div>
+                <div className="mirror-caption-row">
+                  <span>Real Self</span>
+                  <span>Filtered Self</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="hero-stat-bar">

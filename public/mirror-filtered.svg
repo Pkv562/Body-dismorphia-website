@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560">
+  <defs>
+    <!-- Background: slightly lighter, more luminous -->
+    <radialGradient id="f-bg" gradientUnits="userSpaceOnUse" cx="210" cy="235" r="295">
+      <stop offset="0%" stop-color="#1E1208"/>
+      <stop offset="100%" stop-color="#090604"/>
+    </radialGradient>
+    <!-- Skin: whitened, lightened, pink-tinted (beauty filter) -->
+    <radialGradient id="f-sk" gradientUnits="userSpaceOnUse" cx="175" cy="140" r="300">
+      <stop offset="0%"   stop-color="#F5D4B5"/>
+      <stop offset="36%"  stop-color="#ECC0A0"/>
+      <stop offset="74%"  stop-color="#CCA080"/>
+      <stop offset="100%" stop-color="#A87560"/>
+    </radialGradient>
+    <!-- Beauty glow: diffuse pinkish-white halo around face -->
+    <radialGradient id="f-gl" gradientUnits="userSpaceOnUse" cx="210" cy="230" r="230">
+      <stop offset="0%"   stop-color="#FFE8D8" stop-opacity="0.50"/>
+      <stop offset="52%"  stop-color="#FFE8D8" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#FFE8D8" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Pink skin filter overlay -->
+    <radialGradient id="f-pk" gradientUnits="userSpaceOnUse" cx="210" cy="248" r="155">
+      <stop offset="0%"   stop-color="#FFB8CC" stop-opacity="0.20"/>
+      <stop offset="65%"  stop-color="#FFB8CC" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FFB8CC" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Neck/body skin (lightened) -->
+    <linearGradient id="f-nk" gradientUnits="userSpaceOnUse" x1="210" y1="372" x2="210" y2="480">
+      <stop offset="0%"   stop-color="#ECC0A0"/>
+      <stop offset="100%" stop-color="#C8906E"/>
+    </linearGradient>
+    <!-- Eye white: brighter, ultra-clear -->
+    <radialGradient id="f-ew-l" gradientUnits="userSpaceOnUse" cx="162" cy="219" r="24">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDE8E0"/>
+    </radialGradient>
+    <radialGradient id="f-ew-r" gradientUnits="userSpaceOnUse" cx="238" cy="219" r="24">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDE8E0"/>
+    </radialGradient>
+    <!-- Iris: brighter, warmer (filter enhances eye color) -->
+    <radialGradient id="f-ir-l" gradientUnits="userSpaceOnUse" cx="167" cy="217" r="14">
+      <stop offset="0%"   stop-color="#8A5030"/>
+      <stop offset="48%"  stop-color="#3E1C0A"/>
+      <stop offset="100%" stop-color="#100804"/>
+    </radialGradient>
+    <radialGradient id="f-ir-r" gradientUnits="userSpaceOnUse" cx="243" cy="217" r="14">
+      <stop offset="0%"   stop-color="#8A5030"/>
+      <stop offset="48%"  stop-color="#3E1C0A"/>
+      <stop offset="100%" stop-color="#100804"/>
+    </radialGradient>
+    <!-- Lips: pink/rose (K-beauty filter) -->
+    <linearGradient id="f-lp" gradientUnits="userSpaceOnUse" x1="210" y1="298" x2="210" y2="322">
+      <stop offset="0%"   stop-color="#D8607A"/>
+      <stop offset="100%" stop-color="#A83058"/>
+    </linearGradient>
+    <!-- Side shadow: much weaker (filter flattens skin tone) -->
+    <linearGradient id="f-sh" gradientUnits="userSpaceOnUse" x1="103" y1="250" x2="317" y2="250">
+      <stop offset="0%"   stop-color="#030201" stop-opacity="0.22"/>
+      <stop offset="34%"  stop-color="#030201" stop-opacity="0"/>
+      <stop offset="66%"  stop-color="#030201" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#030201" stop-opacity="0.20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="420" height="560" fill="url(#f-bg)"/>
+  <!-- Large beauty-filter glow halo -->
+  <ellipse cx="210" cy="230" rx="218" ry="248" fill="url(#f-gl)"/>
+
+  <!-- Shoulders/body -->
+  <path d="M 0 560 Q 42 492 92 464 Q 146 442 210 442 Q 274 442 328 464 Q 378 492 420 560 Z" fill="#0E0906"/>
+  <!-- Chest skin (lightened) -->
+  <path d="M 82 560 Q 112 492 142 468 Q 172 450 210 448 Q 248 450 278 468 Q 308 492 338 560 Z" fill="url(#f-nk)"/>
+
+  <!-- Neck (lightened) -->
+  <path d="M 181 374 Q 178 432 185 450 Q 198 457 222 450 Q 229 432 226 374 Z" fill="#E8BFAA"/>
+  <ellipse cx="210" cy="451" rx="33" ry="10" fill="#D0A485"/>
+
+  <!-- Hair mass (same shape as real, deep dark) -->
+  <path d="
+    M 100 232
+    Q 90 172 98 117
+    Q 106 62 136 40
+    Q 164 19 210 15
+    Q 256 19 284 40
+    Q 314 62 322 117
+    Q 330 172 320 232
+    Q 308 295 304 348
+    Q 294 398 284 398
+    Q 261 426 210 430
+    Q 159 426 136 398
+    Q 126 398 116 348
+    Q 112 295 100 232 Z
+  " fill="#140C05"/>
+
+  <!-- Face oval: whitened/lightened skin -->
+  <ellipse cx="210" cy="252" rx="108" ry="134" fill="url(#f-sk)"/>
+  <!-- Side shadow (greatly reduced vs real — filter flattens) -->
+  <rect x="103" y="118" width="214" height="270" fill="url(#f-sh)"/>
+  <!-- Pink filter overlay on skin -->
+  <ellipse cx="210" cy="252" rx="108" ry="134" fill="url(#f-pk)"/>
+  <!-- Central frontal brightness (smooth "airbrushed" skin center) -->
+  <ellipse cx="198" cy="206" rx="78" ry="74" fill="white" fill-opacity="0.07"/>
+
+  <!-- Ears (lighter to match whitened skin) -->
+  <ellipse cx="104" cy="260" rx="13" ry="19" fill="#E8C0A6"/>
+  <ellipse cx="108" cy="260" rx="7"  ry="13" fill="#C8906E"/>
+  <ellipse cx="316" cy="260" rx="13" ry="19" fill="#E8C0A6"/>
+  <ellipse cx="312" cy="260" rx="7"  ry="13" fill="#C8906E"/>
+
+  <!-- Eyebrows: more defined arch, sharper (filter enhances brows) -->
+  <path d="M 144 194 Q 163 182 178 179 Q 193 176 204 181 L 200 189 Q 187 188 170 192 Q 155 199 144 194 Z" fill="#1A0D08"/>
+  <path d="M 276 194 Q 257 182 242 179 Q 227 176 216 181 L 220 189 Q 233 188 250 192 Q 265 199 276 194 Z" fill="#1A0D08"/>
+  <!-- Brow definition line (filter sharpens) -->
+  <path d="M 147 194 Q 166 183 179 180" stroke="#3A1C10" stroke-width="0.9" fill="none" opacity="0.55"/>
+  <path d="M 273 194 Q 254 183 241 180" stroke="#3A1C10" stroke-width="0.9" fill="none" opacity="0.55"/>
+
+  <!-- LEFT EYE (filter-enlarged irises, added sparkle) -->
+  <!-- Sclera: ultra-white -->
+  <ellipse cx="172" cy="226" rx="23" ry="13.5" fill="url(#f-ew-l)"/>
+  <!-- Iris (notably larger — beauty app eye enlargement) -->
+  <circle cx="172" cy="226" r="13" fill="url(#f-ir-l)"/>
+  <!-- Pupil -->
+  <circle cx="172" cy="226" r="6" fill="#060402"/>
+  <!-- Primary highlight -->
+  <circle cx="165" cy="219" r="3.2" fill="white" fill-opacity="0.96"/>
+  <!-- Secondary sparkle highlight (filter look) -->
+  <circle cx="179" cy="230" r="1.8" fill="white" fill-opacity="0.55"/>
+  <!-- Inner-corner highlight (beauty filter touch) -->
+  <ellipse cx="152" cy="226" rx="3.5" ry="2.2" fill="white" fill-opacity="0.48"/>
+  <!-- Upper lash: sharper, thicker (liner effect) -->
+  <path d="M 149 217 Q 172 208 195 217" stroke="#0C0704" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+  <!-- Lower lash line -->
+  <path d="M 151 235 Q 172 241 193 235" stroke="#0C0704" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <!-- Aegyo sal (cute under-eye fullness — K-beauty filter) -->
+  <ellipse cx="172" cy="238" rx="15" ry="4.5" fill="#ECA090" fill-opacity="0.20"/>
+
+  <!-- RIGHT EYE -->
+  <ellipse cx="248" cy="226" rx="23" ry="13.5" fill="url(#f-ew-r)"/>
+  <circle cx="248" cy="226" r="13" fill="url(#f-ir-r)"/>
+  <circle cx="248" cy="226" r="6" fill="#060402"/>
+  <circle cx="241" cy="219" r="3.2" fill="white" fill-opacity="0.96"/>
+  <circle cx="255" cy="230" r="1.8" fill="white" fill-opacity="0.55"/>
+  <ellipse cx="268" cy="226" rx="3.5" ry="2.2" fill="white" fill-opacity="0.48"/>
+  <path d="M 225 217 Q 248 208 271 217" stroke="#0C0704" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+  <path d="M 227 235 Q 248 241 269 235" stroke="#0C0704" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <ellipse cx="248" cy="238" rx="15" ry="4.5" fill="#ECA090" fill-opacity="0.20"/>
+
+  <!-- NOSE: slimmer (filter slims nose bridge and nostrils) -->
+  <!-- Bridge shadow (lighter, more subtle) -->
+  <path d="M 210 236 Q 207 258 205 271" stroke="#B09580" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.24"/>
+  <!-- Nostrils: smaller/rounder -->
+  <ellipse cx="199" cy="278" rx="8"  ry="5.5" fill="#B09580" fill-opacity="0.26"/>
+  <ellipse cx="221" cy="278" rx="8"  ry="5.5" fill="#B09580" fill-opacity="0.26"/>
+  <!-- Nose-tip highlight: brighter/harsher (filter over-highlights) -->
+  <ellipse cx="210" cy="272" rx="10" ry="6" fill="white" fill-opacity="0.22"/>
+  <!-- Soft contour side lines (filter-added definition) -->
+  <path d="M 198 245 Q 196 264 196 277" stroke="#B09580" stroke-width="1" fill="none" opacity="0.16"/>
+  <path d="M 222 245 Q 224 264 224 277" stroke="#B09580" stroke-width="1" fill="none" opacity="0.16"/>
+  <!-- Philtrum (lighter) -->
+  <path d="M 204 292 Q 210 297 216 292" stroke="#B09580" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.24"/>
+
+  <!-- LIPS: pink, glossy, plumper looking -->
+  <!-- Upper lip -->
+  <path d="M 176 303 Q 186 293 197 296 Q 204 292 210 295 Q 216 292 223 296 Q 234 293 244 303 Q 230 306 210 303 Q 190 306 176 303 Z" fill="url(#f-lp)"/>
+  <!-- Lower lip (plumper fill) -->
+  <path d="M 176 303 Q 190 319 210 322 Q 230 319 244 303 Q 230 314 210 316 Q 190 314 176 303 Z" fill="#C04068"/>
+  <!-- Gloss highlight (strong — filter makes lips look wet/glossy) -->
+  <ellipse cx="210" cy="311" rx="18" ry="5.5" fill="white" fill-opacity="0.30"/>
+  <ellipse cx="204" cy="306" rx="7"  ry="3.2" fill="white" fill-opacity="0.20"/>
+  <!-- Lip line -->
+  <path d="M 176 303 Q 192 301 210 303 Q 228 301 244 303" stroke="#A02848" stroke-width="0.7" fill="none" opacity="0.50"/>
+
+  <!-- Cheek blush: stronger, pinker (filter amplifies blush) -->
+  <ellipse cx="146" cy="263" rx="35" ry="23" fill="#FF7090" fill-opacity="0.13"/>
+  <ellipse cx="274" cy="263" rx="35" ry="23" fill="#FF7090" fill-opacity="0.13"/>
+  <!-- Highlighter shimmer on cheekbones (filter adds glow) -->
+  <ellipse cx="148" cy="248" rx="22" ry="11" fill="white" fill-opacity="0.08"/>
+  <ellipse cx="272" cy="248" rx="22" ry="11" fill="white" fill-opacity="0.08"/>
+
+  <!-- Jaw shadow (softer than real) -->
+  <ellipse cx="210" cy="384" rx="82" ry="11" fill="#060402" fill-opacity="0.22"/>
+
+  <!-- Hair foreground strands -->
+  <path d="M 100 232 Q 104 258 112 275 Q 108 238 103 182 Z" fill="#190D06"/>
+  <path d="M 320 232 Q 316 258 308 275 Q 312 238 317 182 Z" fill="#190D06"/>
+  <path d="M 112 188 Q 132 173 155 169" stroke="#1C0F07" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  <path d="M 308 188 Q 288 173 265 169" stroke="#1C0F07" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Second pass beauty glow overlay (luminous filter finish) -->
+  <ellipse cx="210" cy="238" rx="135" ry="162" fill="url(#f-gl)" opacity="0.42"/>
+</svg>

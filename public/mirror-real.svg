@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560">
+  <defs>
+    <!-- Background: dark warm studio -->
+    <radialGradient id="r-bg" gradientUnits="userSpaceOnUse" cx="210" cy="235" r="295">
+      <stop offset="0%" stop-color="#201309"/>
+      <stop offset="100%" stop-color="#090604"/>
+    </radialGradient>
+    <!-- Morena skin: warm amber-brown, lit from upper-left -->
+    <radialGradient id="r-sk" gradientUnits="userSpaceOnUse" cx="175" cy="148" r="295">
+      <stop offset="0%"   stop-color="#D8956C"/>
+      <stop offset="38%"  stop-color="#C0784E"/>
+      <stop offset="72%"  stop-color="#8E5030"/>
+      <stop offset="100%" stop-color="#6A3A1E"/>
+    </radialGradient>
+    <!-- Key amber light from upper-left -->
+    <radialGradient id="r-kl" gradientUnits="userSpaceOnUse" cx="158" cy="88" r="260">
+      <stop offset="0%"   stop-color="#D08040" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#D08040" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Neck/body skin -->
+    <linearGradient id="r-nk" gradientUnits="userSpaceOnUse" x1="210" y1="372" x2="210" y2="480">
+      <stop offset="0%"   stop-color="#BE7650"/>
+      <stop offset="100%" stop-color="#7A4428"/>
+    </linearGradient>
+    <!-- Eye white -->
+    <radialGradient id="r-ew-l" gradientUnits="userSpaceOnUse" cx="164" cy="221" r="22">
+      <stop offset="0%"   stop-color="#F6EEE4"/>
+      <stop offset="100%" stop-color="#D4C4B0"/>
+    </radialGradient>
+    <radialGradient id="r-ew-r" gradientUnits="userSpaceOnUse" cx="240" cy="221" r="22">
+      <stop offset="0%"   stop-color="#F6EEE4"/>
+      <stop offset="100%" stop-color="#D4C4B0"/>
+    </radialGradient>
+    <!-- Iris: dark brown -->
+    <radialGradient id="r-ir-l" gradientUnits="userSpaceOnUse" cx="168" cy="218" r="12">
+      <stop offset="0%"   stop-color="#6B3A1A"/>
+      <stop offset="55%"  stop-color="#321608"/>
+      <stop offset="100%" stop-color="#0E0804"/>
+    </radialGradient>
+    <radialGradient id="r-ir-r" gradientUnits="userSpaceOnUse" cx="244" cy="218" r="12">
+      <stop offset="0%"   stop-color="#6B3A1A"/>
+      <stop offset="55%"  stop-color="#321608"/>
+      <stop offset="100%" stop-color="#0E0804"/>
+    </radialGradient>
+    <!-- Lips: warm rose-brown -->
+    <linearGradient id="r-lp" gradientUnits="userSpaceOnUse" x1="210" y1="300" x2="210" y2="326">
+      <stop offset="0%"   stop-color="#A85040"/>
+      <stop offset="100%" stop-color="#752A20"/>
+    </linearGradient>
+    <!-- Side shadow overlay -->
+    <linearGradient id="r-sh" gradientUnits="userSpaceOnUse" x1="103" y1="250" x2="317" y2="250">
+      <stop offset="0%"   stop-color="#030201" stop-opacity="0.44"/>
+      <stop offset="28%"  stop-color="#030201" stop-opacity="0"/>
+      <stop offset="72%"  stop-color="#030201" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#030201" stop-opacity="0.42"/>
+    </linearGradient>
+    <!-- Chin/jaw shadow -->
+    <radialGradient id="r-jaw" gradientUnits="userSpaceOnUse" cx="210" cy="382" rx="84" ry="14" r="14">
+      <stop offset="0%"   stop-color="#060402" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#060402" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="420" height="560" fill="url(#r-bg)"/>
+  <!-- Key warm light splash -->
+  <ellipse cx="158" cy="88" rx="220" ry="195" fill="url(#r-kl)"/>
+
+  <!-- Shoulders/body -->
+  <path d="M 0 560 Q 42 492 92 464 Q 146 442 210 442 Q 274 442 328 464 Q 378 492 420 560 Z" fill="#0E0906"/>
+  <!-- Chest skin -->
+  <path d="M 82 560 Q 112 492 142 468 Q 172 450 210 448 Q 248 450 278 468 Q 308 492 338 560 Z" fill="url(#r-nk)"/>
+
+  <!-- Neck -->
+  <path d="M 181 374 Q 178 432 185 450 Q 198 457 222 450 Q 229 432 226 374 Z" fill="#BF7650"/>
+  <ellipse cx="210" cy="451" rx="33" ry="10" fill="#A06038"/>
+
+  <!-- Hair mass (behind face) -->
+  <path d="
+    M 100 232
+    Q 90 172 98 117
+    Q 106 62 136 40
+    Q 164 19 210 15
+    Q 256 19 284 40
+    Q 314 62 322 117
+    Q 330 172 320 232
+    Q 308 295 304 348
+    Q 294 398 284 398
+    Q 261 426 210 430
+    Q 159 426 136 398
+    Q 126 398 116 348
+    Q 112 295 100 232 Z
+  " fill="#140C05"/>
+
+  <!-- Face oval -->
+  <ellipse cx="210" cy="252" rx="108" ry="134" fill="url(#r-sk)"/>
+  <!-- Side shadow overlay -->
+  <rect x="103" y="118" width="214" height="270" fill="url(#r-sh)"/>
+  <!-- Key light warmth on upper-left face -->
+  <ellipse cx="180" cy="198" rx="58" ry="52" fill="#D08040" fill-opacity="0.09"/>
+
+  <!-- Ears -->
+  <ellipse cx="104" cy="260" rx="13" ry="19" fill="#B07248"/>
+  <ellipse cx="108" cy="260" rx="7"  ry="13" fill="#8A5030"/>
+  <ellipse cx="316" cy="260" rx="13" ry="19" fill="#B07248"/>
+  <ellipse cx="312" cy="260" rx="7"  ry="13" fill="#8A5030"/>
+
+  <!-- Eyebrows: natural, moderately thick, warm dark brown -->
+  <path d="M 147 197 Q 166 187 180 184 Q 194 181 204 185 L 200 192 Q 188 191 171 195 Q 157 201 147 197 Z" fill="#1F1009"/>
+  <path d="M 273 197 Q 254 187 240 184 Q 226 181 216 185 L 220 192 Q 232 191 249 195 Q 263 201 273 197 Z" fill="#1F1009"/>
+  <!-- Subtle brow highlight -->
+  <path d="M 150 197 Q 168 188 180 185" stroke="#4A2814" stroke-width="0.7" fill="none" opacity="0.4"/>
+  <path d="M 270 197 Q 252 188 240 185" stroke="#4A2814" stroke-width="0.7" fill="none" opacity="0.4"/>
+
+  <!-- LEFT EYE -->
+  <!-- Sclera -->
+  <ellipse cx="172" cy="226" rx="21" ry="12" fill="url(#r-ew-l)"/>
+  <!-- Iris -->
+  <circle cx="172" cy="226" r="11" fill="url(#r-ir-l)"/>
+  <!-- Pupil -->
+  <circle cx="172" cy="226" r="5.5" fill="#060402"/>
+  <!-- Catch-light highlight -->
+  <circle cx="167" cy="221" r="2.5" fill="white" fill-opacity="0.88"/>
+  <!-- Upper eyelid/lash line -->
+  <path d="M 151 219 Q 172 211 193 219" stroke="#0C0704" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+  <!-- Lower lash line (subtle) -->
+  <path d="M 153 233 Q 172 238 191 233" stroke="#0C0704" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.4"/>
+  <!-- Eyelid crease (natural) -->
+  <path d="M 154 223 Q 172 218 190 223" stroke="#7A4028" stroke-width="0.6" fill="none" opacity="0.28"/>
+
+  <!-- RIGHT EYE -->
+  <ellipse cx="248" cy="226" rx="21" ry="12" fill="url(#r-ew-r)"/>
+  <circle cx="248" cy="226" r="11" fill="url(#r-ir-r)"/>
+  <circle cx="248" cy="226" r="5.5" fill="#060402"/>
+  <circle cx="243" cy="221" r="2.5" fill="white" fill-opacity="0.88"/>
+  <path d="M 227 219 Q 248 211 269 219" stroke="#0C0704" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+  <path d="M 229 233 Q 248 238 267 233" stroke="#0C0704" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.4"/>
+  <path d="M 230 223 Q 248 218 266 223" stroke="#7A4028" stroke-width="0.6" fill="none" opacity="0.28"/>
+
+  <!-- NOSE -->
+  <!-- Bridge shadow -->
+  <path d="M 210 236 Q 207 258 205 271" stroke="#7A3E20" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.32"/>
+  <!-- Nostrils (wider, natural shape) -->
+  <ellipse cx="197" cy="278" rx="10" ry="6"  fill="#7A3E20" fill-opacity="0.36"/>
+  <ellipse cx="223" cy="278" rx="10" ry="6"  fill="#7A3E20" fill-opacity="0.36"/>
+  <!-- Nose-tip warm highlight -->
+  <ellipse cx="210" cy="272" rx="7"  ry="4.5" fill="#D08050" fill-opacity="0.22"/>
+  <!-- Alar base shadow -->
+  <path d="M 190 282 Q 210 288 230 282" stroke="#5A2E14" stroke-width="1" fill="none" opacity="0.28"/>
+  <!-- Philtrum -->
+  <path d="M 204 292 Q 210 297 216 292" stroke="#7A3E20" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.32"/>
+
+  <!-- LIPS: natural warm rose -->
+  <!-- Upper lip (cupid's bow) -->
+  <path d="M 178 305 Q 187 296 197 299 Q 204 295 210 298 Q 216 295 223 299 Q 233 296 242 305 Q 228 308 210 305 Q 192 308 178 305 Z" fill="url(#r-lp)"/>
+  <!-- Lower lip -->
+  <path d="M 178 305 Q 192 319 210 321 Q 228 319 242 305 Q 228 313 210 315 Q 192 313 178 305 Z" fill="#8A4032"/>
+  <!-- Subtle lip highlight -->
+  <ellipse cx="210" cy="311" rx="12" ry="3.5" fill="#C07060" fill-opacity="0.22"/>
+  <!-- Lip line -->
+  <path d="M 178 305 Q 193 303 210 305 Q 227 303 242 305" stroke="#6A2E20" stroke-width="0.6" fill="none" opacity="0.48"/>
+
+  <!-- Natural cheek tint (very subtle) -->
+  <ellipse cx="150" cy="266" rx="26" ry="17" fill="#C05030" fill-opacity="0.055"/>
+  <ellipse cx="270" cy="266" rx="26" ry="17" fill="#C05030" fill-opacity="0.055"/>
+
+  <!-- Jaw shadow -->
+  <ellipse cx="210" cy="384" rx="82" ry="11" fill="#060402" fill-opacity="0.30"/>
+
+  <!-- Hair foreground strands -->
+  <path d="M 100 232 Q 104 258 112 275 Q 108 238 103 182 Z" fill="#190D06"/>
+  <path d="M 320 232 Q 316 258 308 275 Q 312 238 317 182 Z" fill="#190D06"/>
+  <!-- Hair wisp lines at temples -->
+  <path d="M 112 188 Q 132 173 155 169" stroke="#1C0F07" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  <path d="M 308 188 Q 288 173 265 169" stroke="#1C0F07" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+</svg>
