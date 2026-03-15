@@ -5,6 +5,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { posts } from "@/data/posts";
 import { vlogs } from "@/data/vlogs";
 
+type BlogComment = {
+  id: string;
+  name: string;
+  content: string;
+  createdAt: string;
+};
+
+const COMMENT_STORAGE_KEY = "mirror-blog-comments";
+
 const mirrorPortraitSets = {
   current: {
     realSrc: "/mirror-real.svg",
@@ -23,12 +32,27 @@ const mirrorPortraitSets = {
 export function HomePage() {
   const isBlogModalEnabled = true;
   const activeMirrorPortraits = mirrorPortraitSets.test;
+  const isSingleBlog = posts.length === 1;
+  const isSingleVlog = vlogs.length === 1;
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(0);
+  const [commentsBySlug, setCommentsBySlug] = useState<Record<string, BlogComment[]>>({});
+  const [commentName, setCommentName] = useState("");
+  const [commentText, setCommentText] = useState("");
   const modalOverlayRef = useRef<HTMLDivElement>(null);
 
   const selectedPost = useMemo(() => posts[currentPost], [currentPost]);
+  const selectedComments = useMemo(() => commentsBySlug[selectedPost.slug] ?? [], [commentsBySlug, selectedPost.slug]);
+
+  const persistComments = (nextComments: Record<string, BlogComment[]>) => {
+    setCommentsBySlug(nextComments);
+    try {
+      window.localStorage.setItem(COMMENT_STORAGE_KEY, JSON.stringify(nextComments));
+    } catch {
+      // Ignore storage failures to avoid breaking modal UX.
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -97,6 +121,25 @@ export function HomePage() {
     modalOverlayRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPost, isModalOpen]);
 
+  useEffect(() => {
+    try {
+      const rawComments = window.localStorage.getItem(COMMENT_STORAGE_KEY);
+      if (!rawComments) return;
+
+      const parsedComments = JSON.parse(rawComments) as Record<string, BlogComment[]>;
+      if (parsedComments && typeof parsedComments === "object") {
+        setCommentsBySlug(parsedComments);
+      }
+    } catch {
+      setCommentsBySlug({});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+    setCommentText("");
+  }, [currentPost, isModalOpen]);
+
   const openPost = (index: number) => {
     setCurrentPost(index);
     if (isBlogModalEnabled) {
@@ -106,6 +149,41 @@ export function HomePage() {
 
   const openVlog = () => {
     window.alert("Vlog link coming soon! This video episode will be available on YouTube shortly. Stay tuned!");
+  };
+
+  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const normalizedContent = commentText.trim();
+    if (!normalizedContent) return;
+
+    const normalizedName = commentName.trim() || "Anonymous";
+    const newComment: BlogComment = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      name: normalizedName,
+      content: normalizedContent,
+      createdAt: new Date().toISOString(),
+    };
+
+    const postComments = commentsBySlug[selectedPost.slug] ?? [];
+    const nextComments = {
+      ...commentsBySlug,
+      [selectedPost.slug]: [newComment, ...postComments],
+    };
+
+    persistComments(nextComments);
+    setCommentText("");
+  };
+
+  const handleDeleteComment = (commentId: string) => {
+    const postComments = commentsBySlug[selectedPost.slug] ?? [];
+    const updatedPostComments = postComments.filter((comment) => comment.id !== commentId);
+    const nextComments = {
+      ...commentsBySlug,
+      [selectedPost.slug]: updatedPostComments,
+    };
+
+    persistComments(nextComments);
   };
 
   return (
@@ -137,7 +215,7 @@ export function HomePage() {
         <div className="hero-content">
           <div className="hero-layout">
             <div className="hero-copy">
-              <p className="hero-eyebrow">A 4-Part Series - Filipino Youth and Mental Health</p>
+              <p className="hero-eyebrow">Featured Blog and Vlog - Filipino Youth and Mental Health</p>
               <h1 className="hero-title">
                 Shattering
                 <br />
@@ -148,10 +226,10 @@ export function HomePage() {
               </p>
               <div className="hero-cta-row">
                 <a href="#blog" className="btn-primary">
-                  Read the Series -&gt;
+                  Read the Blog -&gt;
                 </a>
                 <a href="#vlogs" className="btn-ghost">
-                  Watch the Vlogs
+                  Watch the Vlog
                 </a>
               </div>
             </div>
@@ -198,19 +276,17 @@ export function HomePage() {
             <div>
               <p className="section-tag">The Mirror We Inherited</p>
               <h2 className="section-title">
-                Blog <em>Series</em>
+                Featured <em>Blog</em>
               </h2>
             </div>
-            <p className="section-desc">
-              Four deep-dives into the crisis of body image anxiety among Filipino youth - from historical roots to concrete solutions.
-            </p>
+            <p className="section-desc">One featured blog post exploring the roots of body dysmorphia among Filipino youth.</p>
           </div>
 
-          <div className="blog-grid">
+          <div className={`blog-grid${isSingleBlog ? " single-item" : ""}`}>
             {posts.map((post, index) => (
               <div
                 key={post.slug}
-                className={`blog-card reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ""}`}
+                className={`blog-card${isSingleBlog ? "" : ` reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ""}`}`}
                 onClick={() => openPost(index)}
                 role="button"
                 tabIndex={0}
@@ -243,22 +319,21 @@ export function HomePage() {
         <div className="section">
           <div className="section-header reveal">
             <div>
-              <p className="section-tag">Video Series</p>
+              <p className="section-tag">Featured Video</p>
               <h2 className="section-title">
-                Watch the <em>Vlogs</em>
+                Watch the <em>Vlog</em>
               </h2>
             </div>
             <p className="section-desc">
-              The companion video series to our written posts. Each episode brings the research to life with conversation and lived
-              experience.
+              One companion vlog that brings the blog&apos;s core ideas into a more direct, conversational format.
             </p>
           </div>
 
-          <div className="vlog-grid">
+          <div className={`vlog-grid${isSingleVlog ? " single-item" : ""}`}>
             {vlogs.map((vlog, index) => (
               <div
                 key={vlog.id}
-                className={`vlog-card reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ""}`}
+                className={`vlog-card${isSingleVlog ? "" : ` reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ""}`}`}
                 onClick={openVlog}
                 role="button"
                 tabIndex={0}
@@ -283,6 +358,24 @@ export function HomePage() {
                 </div>
               </div>
             ))}
+
+            {isSingleVlog ? (
+              <aside className="vlog-side-panel">
+                <div className="vlog-side-copy">
+                  <p className="vlog-side-kicker">About This Vlog</p>
+                  <h3>Single Documentary Episode</h3>
+                  <p>
+                    Single documentary-style episode with motion graphics, split-screens, animated brain responses, text overlays,
+                    and subtle family-table shadows. No physical props, pure visuals and voice.
+                  </p>
+                  <p>
+                    It traces colonial roots, social media pressure, family puna culture, and appearance-based hiring bias, then
+                    ends with clear actions viewers can use right away.
+                  </p>
+                  <p className="vlog-side-note">Focus: concise visuals, clear narration, practical call to action.</p>
+                </div>
+              </aside>
+            ) : null}
           </div>
         </div>
       </section>
@@ -299,7 +392,7 @@ export function HomePage() {
               </h2>
             </div>
             <p className="section-desc">
-              This series is grounded in peer-reviewed studies, national statistics, and clinical analysis of BDD among Filipino youth.
+              This project is grounded in peer-reviewed studies, national statistics, and clinical analysis of BDD among Filipino youth.
             </p>
           </div>
 
@@ -439,11 +532,11 @@ export function HomePage() {
           <div className="footer-brand">
             <h3>The Mirror We Inherited</h3>
             <p>
-              A research-based blog and vlog series addressing body dysmorphia and body image anxiety among Filipino youth.
+              A research-based blog and vlog project addressing body dysmorphia and body image anxiety among Filipino youth.
             </p>
           </div>
           <div className="footer-col">
-            <h4>Series</h4>
+            <h4>Blog</h4>
             <ul>
               {posts.map((post, index) => (
                 <li key={post.slug}>
@@ -476,7 +569,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>This series is based on peer-reviewed research including national statistics and clinical studies.</p>
+          <p>This project is based on peer-reviewed research including national statistics and clinical studies.</p>
           <div className="footer-cta-tag">Do not be afraid to ask for help.</div>
         </div>
       </footer>
@@ -493,7 +586,7 @@ export function HomePage() {
       >
         <div className="modal-panel" id="modalPanel">
           <div className="modal-header">
-            <span className="modal-series">The Mirror We Inherited - Series</span>
+            <span className="modal-series">The Mirror We Inherited - Featured Blog</span>
             <button className="modal-close" onClick={() => setIsModalOpen(false)} type="button" aria-label="Close modal">
               X
             </button>
@@ -505,33 +598,86 @@ export function HomePage() {
           <div className="modal-meta-row">
             <span className="modal-meta-item">Read: {selectedPost.readTime}</span>
             <span className="modal-meta-item">Date: {selectedPost.date}</span>
-            <span className="modal-meta-item">
-              Series Post {currentPost + 1} of {posts.length}
-            </span>
+            <span className="modal-meta-item">{posts.length === 1 ? "Featured blog post" : `Series Post ${currentPost + 1} of ${posts.length}`}</span>
           </div>
           <div className="modal-body">{selectedPost.body}</div>
 
-          <div className="modal-nav">
-            <button
-              className="modal-nav-btn"
-              onClick={() => setCurrentPost((prev) => Math.max(0, prev - 1))}
-              disabled={currentPost === 0}
-              type="button"
-            >
-              Previous
-            </button>
-            <span className="modal-series-counter">
-              {currentPost + 1} of {posts.length}
-            </span>
-            <button
-              className="modal-nav-btn"
-              onClick={() => setCurrentPost((prev) => Math.min(posts.length - 1, prev + 1))}
-              disabled={currentPost === posts.length - 1}
-              type="button"
-            >
-              Next
-            </button>
-          </div>
+          <section className="modal-comments" aria-label="Blog comments">
+            <div className="modal-comments-head">
+              <h3>Comments</h3>
+              <span>{selectedComments.length}</span>
+            </div>
+
+            <form className="modal-comment-form" onSubmit={handleSubmitComment}>
+              <input
+                type="text"
+                className="modal-comment-input"
+                value={commentName}
+                onChange={(event) => setCommentName(event.target.value)}
+                maxLength={50}
+                placeholder="Your name (optional)"
+              />
+              <textarea
+                className="modal-comment-textarea"
+                value={commentText}
+                onChange={(event) => setCommentText(event.target.value)}
+                maxLength={600}
+                placeholder="Share your reflection..."
+                required
+              />
+              <div className="modal-comment-form-footer">
+                <p>Comments are saved on this browser only.</p>
+                <button type="submit" className="modal-comment-submit">
+                  Post Comment
+                </button>
+              </div>
+            </form>
+
+            <div className="modal-comment-list">
+              {selectedComments.length === 0 ? (
+                <p className="modal-comment-empty">No comments yet. Be the first to share a thought.</p>
+              ) : (
+                selectedComments.map((comment) => (
+                  <article key={comment.id} className="modal-comment-item">
+                    <div className="modal-comment-top">
+                      <div>
+                        <strong>{comment.name}</strong>
+                        <span>{new Date(comment.createdAt).toLocaleString()}</span>
+                      </div>
+                      <button type="button" className="modal-comment-delete" onClick={() => handleDeleteComment(comment.id)}>
+                        Delete
+                      </button>
+                    </div>
+                    <p>{comment.content}</p>
+                  </article>
+                ))
+              )}
+            </div>
+          </section>
+
+          {posts.length > 1 ? (
+            <div className="modal-nav">
+              <button
+                className="modal-nav-btn"
+                onClick={() => setCurrentPost((prev) => Math.max(0, prev - 1))}
+                disabled={currentPost === 0}
+                type="button"
+              >
+                Previous
+              </button>
+              <span className="modal-series-counter">
+                {currentPost + 1} of {posts.length}
+              </span>
+              <button
+                className="modal-nav-btn"
+                onClick={() => setCurrentPost((prev) => Math.min(posts.length - 1, prev + 1))}
+                disabled={currentPost === posts.length - 1}
+                type="button"
+              >
+                Next
+              </button>
+            </div>
+          ) : null}
 
           <div className="modal-page-link-wrap">
             <Link href={`/blog/${selectedPost.slug}`} className="btn-ghost">

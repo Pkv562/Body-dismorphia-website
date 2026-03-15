@@ -24,9 +24,7 @@ export function BlogPostPage({ post, postIndex, totalPosts }: BlogPostPageProps)
         <div className="modal-meta-row">
           <span className="modal-meta-item">Read: {post.readTime}</span>
           <span className="modal-meta-item">Date: {post.date}</span>
-          <span className="modal-meta-item">
-            Series Post {postIndex + 1} of {totalPosts}
-          </span>
+          <span className="modal-meta-item">{totalPosts === 1 ? "Featured blog post" : `Series Post ${postIndex + 1} of ${totalPosts}`}</span>
         </div>
 
         <article className="modal-body">{post.body}</article>

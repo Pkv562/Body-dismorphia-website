@@ -24,7 +24,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "The Mirror We Inherited - Shattering the Filipino Reflection",
-  description: "A research-based blog and vlog series addressing body dysmorphia and body image anxiety among Filipino youth.",
+  description: "A research-based blog and vlog project addressing body dysmorphia and body image anxiety among Filipino youth.",
 };
 
 export default function RootLayout({
