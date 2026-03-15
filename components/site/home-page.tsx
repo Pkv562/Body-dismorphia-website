@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { posts } from "@/data/posts";
 import { vlogs } from "@/data/vlogs";
 
@@ -21,11 +21,12 @@ const mirrorPortraitSets = {
 } as const;
 
 export function HomePage() {
-  const isBlogModalEnabled = false;
+  const isBlogModalEnabled = true;
   const activeMirrorPortraits = mirrorPortraitSets.test;
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(0);
+  const modalOverlayRef = useRef<HTMLDivElement>(null);
 
   const selectedPost = useMemo(() => posts[currentPost], [currentPost]);
 
@@ -89,6 +90,12 @@ export function HomePage() {
       document.body.style.overflow = "";
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    modalOverlayRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPost, isModalOpen]);
 
   const openPost = (index: number) => {
     setCurrentPost(index);
@@ -475,6 +482,7 @@ export function HomePage() {
       </footer>
 
       <div
+        ref={modalOverlayRef}
         className={`modal-overlay${isModalOpen ? " open" : ""}`}
         id="modalOverlay"
         onClick={(event) => {
