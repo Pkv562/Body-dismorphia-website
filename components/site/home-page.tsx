@@ -15,8 +15,8 @@ const mirrorPortraitSets = {
   test: {
     realSrc: "/filipino-beauty.jpg",
     filteredSrc: "/white-beauty.webp",
-    leftLabel: "Filipino Beauty",
-    rightLabel: "White Beauty Ideal",
+    leftLabel: "Reality",
+    rightLabel: "Expectation",
   },
 } as const;
 
