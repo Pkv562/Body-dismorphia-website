@@ -14,6 +14,14 @@ type BlogComment = {
 
 const COMMENT_STORAGE_KEY = "mirror-blog-comments";
 
+function getYouTubeId(url: string): string | null {
+  const shortMatch = url.match(/youtu\.be\/([\w-]{11})/);
+  if (shortMatch) return shortMatch[1];
+  const longMatch = url.match(/[?&]v=([\w-]{11})/);
+  if (longMatch) return longMatch[1];
+  return null;
+}
+
 const mirrorPortraitSets = {
   current: {
     realSrc: "/mirror-real.svg",
@@ -34,6 +42,7 @@ export function HomePage() {
   const activeMirrorPortraits = mirrorPortraitSets.test;
   const isSingleBlog = posts.length === 1;
   const isSingleVlog = vlogs.length === 1;
+  const [playingVlogId, setPlayingVlogId] = useState<string | null>(null);
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(0);
@@ -147,8 +156,8 @@ export function HomePage() {
     }
   };
 
-  const openVlog = () => {
-    window.alert("Vlog link coming soon! This video episode will be available on YouTube shortly. Stay tuned!");
+  const openVlog = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
@@ -334,27 +343,48 @@ export function HomePage() {
               <div
                 key={vlog.id}
                 className={`vlog-card${isSingleVlog ? "" : ` reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ""}`}`}
-                onClick={openVlog}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openVlog();
-                  }
-                }}
               >
-                <div className="vlog-thumb">
-                  <div className="vlog-thumb-bg" />
-                  <div className="vlog-thumb-pattern" />
-                  <span className="vlog-ep-num">{vlog.epNum}</span>
-                  <div className="play-btn">Play</div>
-                </div>
+                {playingVlogId === vlog.id && getYouTubeId(vlog.url) ? (
+                  <div className="vlog-thumb">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${getYouTubeId(vlog.url)}?autoplay=1`}
+                      title={vlog.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="vlog-thumb"
+                    onClick={() => setPlayingVlogId(vlog.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setPlayingVlogId(vlog.id);
+                      }
+                    }}
+                  >
+                    <div
+                      className="vlog-thumb-bg"
+                      style={vlog.thumbnail ? {
+                        backgroundImage: `url(${vlog.thumbnail})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      } : undefined}
+                    />
+                    <div className="vlog-thumb-pattern" style={{ opacity: vlog.thumbnail ? 0 : 1 }} />
+                    <span className="vlog-ep-num">{vlog.epNum}</span>
+                    <div className="play-btn">Play</div>
+                  </div>
+                )}
                 <div className="vlog-info">
                   <div className="vlog-ep-tag">{vlog.epTag}</div>
                   <div className="vlog-title">{vlog.title}</div>
                   <div className="vlog-desc">{vlog.desc}</div>
-                  <div className="vlog-placeholder-note">Video link coming soon</div>
+
                 </div>
               </div>
             ))}

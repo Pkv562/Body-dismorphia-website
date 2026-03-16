@@ -5,6 +5,7 @@ export type VlogEpisode = {
   title: string;
   desc: string;
   url: string;
+  thumbnail?: string;
 };
 
 export const vlogs: VlogEpisode[] = [
@@ -14,6 +15,7 @@ export const vlogs: VlogEpisode[] = [
     epTag: "Episode 1 · Documentary",
     title: "Mirrors Unbroken",
     desc: "A single documentary-style episode using split-screens, motion graphics, and voice to trace colonial roots, digital pressure, family shaming, and economic appearance bias.",
-    url: "https://youtube.com/watch?v=PLACEHOLDER1",
+    url: "https://youtu.be/23w_dFj9ncU",
+    thumbnail: "/vlog-ep01-thumb.png",
   },
 ];
