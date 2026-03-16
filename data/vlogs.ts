@@ -15,7 +15,7 @@ export const vlogs: VlogEpisode[] = [
     epTag: "Episode 1 · Documentary",
     title: "Mirrors Unbroken",
     desc: "A single documentary-style episode using split-screens, motion graphics, and voice to trace colonial roots, digital pressure, family shaming, and economic appearance bias.",
-    url: "https://youtu.be/23w_dFj9ncU",
+    url: "https://youtu.be/rUNN0K1QAxQ",
     thumbnail: "/vlog-ep01-thumb.png",
   },
 ];
